@@ -1,0 +1,231 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 0;
+    margin: 0;
+    background-color: #F9F9F9;
+}
+
+
+h1 {
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+.header {
+    height: 80px;
+    width: 100%;
+
+    margin-bottom: 100px;
+
+    position: fixed;
+    display: flex;
+    align-items: center;
+
+    background-color: black;
+}
+
+#form_publicar {
+    padding-top: 100px;
+}
+
+.topico {
+    background-image: url(../img/teemo2.png);
+    background-repeat: no-repeat;
+    background-size: cover;   
+}
+
+
+.header_nav {
+    width: 80%;
+    margin: auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 250px;
+
+}
+
+.header_nav img {
+    height: 40px;
+}
+
+.header_nav a {
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+
+    margin-left: 25px;
+    margin-right: 25px;
+
+    font-size: 13px;
+
+    color: white;
+    
+}
+
+.header_nav a:hover {
+   transition: 0.4s;
+   font-size: 15px;
+}
+
+#img_login {
+    height: 22px;
+    margin-left: 200px;
+}
+
+.dashboard {
+    background-color: white;
+    text-align: center;
+    padding: 50px 0;
+    width: 100%;
+    margin: auto;
+    height: 100%;
+
+
+}
+
+.dashboard h1 {
+    margin-bottom: 10px;
+}
+
+.dashboard .textarea-padrao {
+    resize: none;
+    display: inline-block;
+    height: 50px;
+    width: 80%;
+    border-radius: 100px;
+    margin-top: 0px;
+    
+}
+
+.titulo_coment {
+    text-align: left;
+    margin-left: 130px;
+    font-size: 35px;
+    margin-bottom: 0;
+    color: white;
+}
+
+.box-login {
+    display: inline-block;
+    background-color: white;
+    box-shadow:  3px 3px 5px 2px #ccc;
+    padding: 60px 20px 0px 20px;
+    border-radius: 20px;
+    width: 400px;
+}
+
+.dashboard .btn-green {
+    height: 40px;
+    width: 200px;
+
+    margin-top: 20px;
+
+    border-radius: 20px;
+    border: none;
+
+    color: white;
+    background-color: #d13639;
+    cursor: pointer;
+}
+
+.botoes {
+    margin: auto;
+    margin-bottom: 40px;
+    display: block; /* Default de botão é inline-block. Com block, margin auto funciona*/
+}
+
+.btn {
+    color: white;
+    text-transform: uppercase;
+    width: 180px;
+    margin: 0 1%;
+    border: 5px solid #ecf0f1;
+    height: 38px;
+    padding: 0 20px;
+    cursor: pointer;
+    background-color: rgb(255, 164, 131);
+}
+
+.btn-now {
+    border: 3px solid #232323;
+    background-color: #d13639;
+}
+
+/* EXTRA */
+
+.extra {
+    margin: 10px;
+}
+
+.extra img {
+  height: 50px;
+   visibility: hidden;
+}
+
+.extra .msg_erro {
+    background-color: sandybrown; 
+    color: black; 
+    visibility: hidden;
+}
+
+.card {
+    border: 1px solid #d13639;
+    border-radius: 10px;
+    display: block;
+    width: 35%;
+    margin: 10px 7%;
+    height: 160px;
+    float: left;
+    text-align: center;
+
+    background-color: white;
+    box-shadow:  3px 3px 5px 2px #ccc;
+    
+}
+
+/* extra */
+
+.show-on-hover {
+    color:#232323
+}
+
+.show-on-hover:hover {
+    color:white
+}
+
+.publicacao {
+    background-color: #F9F9F9;
+    margin: 0 auto;
+    width: 80%;
+    height: 100px;
+    display: block;
+    border: 1px solid #d13639;
+    border-radius: 5px;
+    padding: 5px;
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.nome {
+    float:left;
+    color: #d13639;
+    font-weight: bold;
+    /* border: 1px solid rgb(255, 95, 37); */
+}
+
+.descricao {
+    height: auto;
+    width: auto;
+    margin-left: 13%;
+}
+
+.feed {
+    margin-top: 60px;
+    
+}
