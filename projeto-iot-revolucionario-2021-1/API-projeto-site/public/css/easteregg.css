@@ -1,0 +1,30 @@
+body {
+    margin: 0;
+    padding: 0;
+
+    background-color: #161616;
+}
+
+#heart {
+    height: 700px;
+
+}
+
+.boys {
+    height: 130px;
+    margin: 20px;
+}
+
+.imgs {
+    height: 850px;
+    width:70%;
+    margin: auto;
+
+    background-image: url(../IMG/heart.svg);
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

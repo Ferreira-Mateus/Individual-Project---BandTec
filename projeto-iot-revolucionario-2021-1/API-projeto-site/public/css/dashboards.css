@@ -68,4 +68,146 @@ a {
     margin-left: 200px;
 }
 
+.title_lanes {
+    background-color: #161616;
+    height: 100px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.title_lanes h2 {
+    padding-top: 160px;
+}
+
+.lanes {
+    background-color: #161616;
+    height: 200px;
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.img_lane {
+    margin: 40px;
+    height: 100px;
+    padding-top: 40px;
+}
+
+.img_lane:hover {
+    height: 120px;
+    transition: 0.4s;
+}
+
+.champions {
+    height: 600px;
+    background-color: #161616;
+}
+
+.img_champ {
+    height: 80px;
+    margin: 20px;
+
+    border: 2px solid black;
+}
+
+.div_champs {
+    width: 70%;
+    height: 400px;
+    margin: auto;
+    padding-top: 40px;
+
+    text-align: center;
+}
+
+.div_champs h1 {
+    color:white;
+    font-size: 24px;
+    font-style: italic;
+}
+
+
+.meu-grafico {
+    width: 594px;
+    height: 300px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+}
+
+.sorteio_champ {
+    height: 600px;
+    width: 100%;
+    background-color: #161616;
+}
+
+.title_sorteio {
+    height: 100px;
+    margin-bottom: 1px solid gray;
+    text-align: center;
+}
+
+.title_sorteio h1 {
+    text-align: center;
+    padding: 30px;
+    font-size: 30px;
+    font-style: italic;
+    color: white;
+}
+
+.camp {
+    float: left;
+    height: 498px;
+    width: 33.5%;
+    border-right: 1px solid gray;
+    text-align: center;
+}
+
+.build {
+    float: left;
+    height: 498px;
+    width: 33%;
+    border-right: 1px solid gray;
+    text-align: center;
+}
+
+.mapas {
+    float: left;
+    height: 498px;
+    width: 33%;
+    text-align: center;
+}
+
+.button_random {
+    height: 45px;
+    width: 130px;
+    border: 2px solid white;
+    border-radius: 30px;
+    color: white;
+    background-color: transparent;
+    
+}
+
+.button_random:hover {
+    background-color: black;
+    transition: 0.7s;
+}
+
+.img_random {
+    margin-top: 60px;
+    height: 300px;
+    border-radius: 10px;    
+}
+
+#img_map {
+    margin-left: 50px;
+}
+
+#img_map2 {
+    margin-left: 50px;
+}
 

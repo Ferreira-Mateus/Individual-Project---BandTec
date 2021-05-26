@@ -9,25 +9,12 @@
     <link rel="stylesheet" href="css/dashboards.css">
 
     <!-- script do google charts -->
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript" src="funcoes.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0/dist/Chart.min.js"></script>
 
     <style>
         /* Classes CSS para exemplos de alertas */
-
-        .normal {
-            background-color: white;
-        }
-
-        .alerta-alto {
-            color: #d13639;
-            
-        }
-
-        .alerta-baixo {
-            color: rgb(38, 0, 255);
-            
-        }
+        
     </style>
 </head>
 
@@ -37,28 +24,527 @@
 
         <div class="header_nav">
 
-            <a href="#noticia">Metas</a>
-            <a href="#atualizacao">Picks</a>
+            <a href="#noticia">Menu</a>
+           
             <a href="#banner"><img src="img/Lstats_logo.svg" alt="Logo"></a>
-            <a href="#sports">Bans</a>
+            
             <a href="publicacoes.html">Fórum</a>
 
-            <a id="img_login" href="login.html">Olá, </a>
+            <a id="img_login" href="index.html">Sair</a>
 
         </div>
 
     </header>
 
-    
 
-    
+    <section class="title_lanes">
+        <h2> <i> Escolha sua Lane: </i> </h2>
+    </section>
+
+    <section class="lanes">
+        <img class="img_lane" src="img/Top_icon.png" onclick="toplane()">
+        <img class="img_lane" src="img/Jungle_icon.png" onclick="jg()">
+        <img class="img_lane" src="img/mid.png" onclick="midlane()">
+        <img class="img_lane" src="img/adc.png" onclick="adc()">
+        <img class="img_lane" src="img/sup.png" onclick="sup()">
+    </section>
+
+    <section class="champions">
+
+        <div class="div_champs" id="toplan" style="display: none;">
+            <h1>Campeões mais fortes do Patch</h1>
+            <img src="img/sett.png" class="img_champ">
+            <img src="img/ornn.jpg" class="img_champ">
+            <img src="img/darius.png" class="img_champ">
+            <img src="img/lee.png" class="img_champ">
+            <img src="img/riven.png" class="img_champ"> <br>
+
+            <div class="meu-grafico">
+                <canvas id="myChart"></canvas>
+            </div>
+
+        </div>
 
 
+        <div class="div_champs" id="jglane" style="display: none;">
+            <h1>Campeões mais fortes do Patch</h1>
+            <img src="img/lee.png" class="img_champ">
+            <img src="img/morgana.png" class="img_champ">
+            <img src="img/shaco.png" class="img_champ">
+            <img src="img/khazix.png" class="img_champ">
+            <img src="img/diana.png" class="img_champ"> <br>
+
+            <div class="meu-grafico">
+                <canvas id="myChart2"></canvas>
+            </div>
+
+        </div>
+
+        <div class="div_champs" id="midlanee" style="display: none;">
+            <h1>Campeões mais fortes do Patch</h1>
+            <img src="img/sylas.jpg" class="img_champ">
+            <img src="img/zed.jpg" class="img_champ">
+            <img src="img/neeko-thumb.jpg" class="img_champ">
+            <img src="img/qiyana.png" class="img_champ">
+            <img src="img/kayle.png" class="img_champ"> <br>
+
+            <div class="meu-grafico">
+                <canvas id="myChart3"></canvas>
+            </div>
+
+        </div>
+
+        <div class="div_champs" id="adcc" style="display: none;">
+            <h1>Campeões mais fortes do Patch</h1>
+            <img src="img/kaisa.jpg" class="img_champ">
+            <img src="img/samira.png" class="img_champ">
+            <img src="img/jinx.png" class="img_champ">
+            <img src="img/tristana-classic.png" class="img_champ">
+            <img src="img/ez.jpg" class="img_champ"> <br>
+
+            <div class="meu-grafico">
+                <canvas id="myChart4"></canvas>
+            </div>
+
+        </div>
+
+        <div class="div_champs" id="supp" style="display: none;">
+            <h1>Campeões mais fortes do Patch</h1>
+            <img src="img/thresh.png" class="img_champ">
+            <img src="img/lulu.png" class="img_champ">
+            <img src="img/leona.png" class="img_champ">
+            <img src="img/senna.png" class="img_champ">
+            <img src="img/nautilus.png" class="img_champ"> <br>
+
+            <div class="meu-grafico">
+                <canvas id="myChart5"></canvas>
+            </div>
+
+        </div>
+
+    </section>
+
+    <section class="sorteio_champ">
+        <div class="title_sorteio">
+            <h1>
+                Sorteio
+            </h1>
+        </div>
+
+
+        <div class="camp">
+            <button class="button_random" onclick="random_champ()">Sortear Campeão</button> <br>
+            <img id="img_camp" class="img_random" src="" alt="">
+        </div>
+
+        <div class="build">
+            <button class="button_random" onclick="random_build()">Sortear Build</button> <br>
+            <img id="img_build" class="img_random" src="" alt="">
+        </div>
+
+        <div class="mapas">
+            <button class="button_random" onclick="random_map()">Sortear Mapa</button> <br>
+            <img id="img_map" class="img_random" src="img/ha.png" alt="" style="display: none;">
+            <img id="img_map2" class="img_random" src="img/sr.png" alt="" style="display: none;">
+        </div>
+
+    </section>
 
 </body>
 
 
 <script>
+
+var ctx = document.getElementById('myChart');
+
+// ao criar um new Chart, colocamos ->
+// (contexto, { type, data e options} )
+var meuGrafico = new Chart(ctx, {
+    // TYPE -> qual o tipo do gráfico? será um gráfico de barras? linhas? define aqui
+    type: 'bar',
+
+    // DATA -> os dados renderizados no gráfico:
+    data: {
+        labels: [
+            '', 
+        ],
+        datasets: [
+        {
+            label: 'Darius',
+            data: [30.3],
+            borderColor: 'black',
+            backgroundColor: [
+                '#00ABE0',
+                
+            ],
+            hoverOffset: 4,
+        },    
+            
+        {
+            label: 'Urgot',
+            data: [23.4],
+            borderColor: 'black',
+            backgroundColor: [
+                '#F95D48'
+                
+            ],
+            hoverOffset: 4,
+        },
+
+        {
+            label: 'Lee Sin',
+            data: [26.3],
+            borderColor: 'black',
+            backgroundColor: [
+                'white'
+                
+            ]
+        }]
+    },
+
+    // OPTIONS -> Opções globais
+    options: {
+
+        title: {
+            margin: 20,
+            // mostrar titulo?
+            display: true,
+            // tamanho do texto
+            fontSize: 20,
+            // texto no titulo
+            text: "Campeões mais banidos do Top",
+            // onde? right? left? top?
+            position: 'top',
+            
+
+        },
+        legend: {
+            // mostrar legenda?
+            display: true,
+            // ao contrario? (dataset 1 depois de 2)
+            reverse: true,
+            // onde?
+            position: 'right'
+        },
+    }
+})
+
+// mudando cor de fonte de tudo
+Chart.defaults.global.defaultFontColor = "white";
+
+
+
+var cty = document.getElementById('myChart2');
+
+// ao criar um new Chart, colocamos ->
+// (contexto, { type, data e options} )
+var meuGrafico = new Chart(cty, {
+    // TYPE -> qual o tipo do gráfico? será um gráfico de barras? linhas? define aqui
+    type: 'bar',
+
+    // DATA -> os dados renderizados no gráfico:
+    data: {
+        labels: [
+            '', 
+        ],
+        datasets: [
+        {
+            label: 'Morgana',
+            data: [40.3],
+            borderColor: 'black',
+            backgroundColor: [
+                '#00ABE0',
+                
+            ],
+            hoverOffset: 4,
+        },    
+            
+        {
+            label: 'Hecarim',
+            data: [26.7],
+            borderColor: 'black',
+            backgroundColor: [
+                '#F95D48'
+                
+            ],
+            hoverOffset: 4,
+        },
+
+        {
+            label: 'Shaco',
+            data: [23],
+            borderColor: 'black',
+            backgroundColor: [
+                'white'
+                
+            ]
+        }]
+    },
+
+    // OPTIONS -> Opções globais
+    options: {
+
+        title: {
+            margin: 20,
+            // mostrar titulo?
+            display: true,
+            // tamanho do texto
+            fontSize: 20,
+            // texto no titulo
+            text: "Campeões mais banidos da Jungle",
+            // onde? right? left? top?
+            position: 'top',
+            
+
+        },
+        legend: {
+            // mostrar legenda?
+            display: true,
+            // ao contrario? (dataset 1 depois de 2)
+            reverse: true,
+            // onde?
+            position: 'right'
+        },
+    }
+})
+
+// mudando cor de fonte de tudo
+Chart.defaults.global.defaultFontColor = "white";
+
+
+
+var ctz = document.getElementById('myChart3');
+
+// ao criar um new Chart, colocamos ->
+// (contexto, { type, data e options} )
+var meuGrafico = new Chart(ctz, {
+    // TYPE -> qual o tipo do gráfico? será um gráfico de barras? linhas? define aqui
+    type: 'bar',
+
+    // DATA -> os dados renderizados no gráfico:
+    data: {
+        labels: [
+            '', 
+        ],
+        datasets: [
+        {
+            label: 'Sylas',
+            data: [23.3],
+            borderColor: 'black',
+            backgroundColor: [
+                '#00ABE0',
+                
+            ],
+            hoverOffset: 4,
+        },    
+            
+        {
+            label: 'Rumble',
+            data: [30.7],
+            borderColor: 'black',
+            backgroundColor: [
+                '#F95D48'
+                
+            ],
+            hoverOffset: 4,
+        },
+
+        {
+            label: 'Yasuo',
+            data: [40],
+            borderColor: 'black',
+            backgroundColor: [
+                'white'
+                
+            ]
+        }]
+    },
+
+    // OPTIONS -> Opções globais
+    options: {
+
+        title: {
+            margin: 20,
+            // mostrar titulo?
+            display: true,
+            // tamanho do texto
+            fontSize: 20,
+            // texto no titulo
+            text: "Campeões mais banidos do Mid",
+            // onde? right? left? top?
+            position: 'top',
+            
+
+        },
+        legend: {
+            // mostrar legenda?
+            display: true,
+            // ao contrario? (dataset 1 depois de 2)
+            reverse: true,
+            // onde?
+            position: 'right'
+        },
+    }
+})
+
+// mudando cor de fonte de tudo
+Chart.defaults.global.defaultFontColor = "white";
+
+
+var ctb = document.getElementById('myChart4');
+
+// ao criar um new Chart, colocamos ->
+// (contexto, { type, data e options} )
+var meuGrafico = new Chart(ctb, {
+    // TYPE -> qual o tipo do gráfico? será um gráfico de barras? linhas? define aqui
+    type: 'bar',
+
+    // DATA -> os dados renderizados no gráfico:
+    data: {
+        labels: [
+            '', 
+        ],
+        datasets: [
+        {
+            label: 'Samira',
+            data: [50],
+            borderColor: 'black',
+            backgroundColor: [
+                '#00ABE0',
+                
+            ],
+            hoverOffset: 4,
+        },    
+            
+        {
+            label: 'Kai`sa',
+            data: [26.7],
+            borderColor: 'black',
+            backgroundColor: [
+                '#F95D48'
+                
+            ],
+            hoverOffset: 4,
+        },
+
+        {
+            label: 'Tristana',
+            data: [23],
+            borderColor: 'black',
+            backgroundColor: [
+                'white'
+                
+            ]
+        }]
+    },
+
+    // OPTIONS -> Opções globais
+    options: {
+
+        title: {
+            margin: 20,
+            // mostrar titulo?
+            display: true,
+            // tamanho do texto
+            fontSize: 20,
+            // texto no titulo
+            text: "Campeões mais banidos no Bot",
+            // onde? right? left? top?
+            position: 'top',
+            
+
+        },
+        legend: {
+            // mostrar legenda?
+            display: true,
+            // ao contrario? (dataset 1 depois de 2)
+            reverse: true,
+            // onde?
+            position: 'right'
+        },
+    }
+})
+
+// mudando cor de fonte de tudo
+Chart.defaults.global.defaultFontColor = "white";
+
+
+var ctv = document.getElementById('myChart5');
+
+// ao criar um new Chart, colocamos ->
+// (contexto, { type, data e options} )
+var meuGrafico = new Chart(ctv, {
+    // TYPE -> qual o tipo do gráfico? será um gráfico de barras? linhas? define aqui
+    type: 'bar',
+
+    // DATA -> os dados renderizados no gráfico:
+    data: {
+        labels: [
+            '', 
+        ],
+        datasets: [
+        {
+            label: 'lulu',
+            data: [43],
+            borderColor: 'black',
+            backgroundColor: [
+                '#00ABE0',
+                
+            ],
+            hoverOffset: 4,
+        },    
+            
+        {
+            label: 'thresh',
+            data: [26.7],
+            borderColor: 'black',
+            backgroundColor: [
+                '#F95D48'
+                
+            ],
+            hoverOffset: 4,
+        },
+
+        {
+            label: 'Rell',
+            data: [25],
+            borderColor: 'black',
+            backgroundColor: [
+                'white'
+                
+            ]
+        }]
+    },
+
+    // OPTIONS -> Opções globais
+    options: {
+
+        title: {
+            margin: 20,
+            // mostrar titulo?
+            display: true,
+            // tamanho do texto
+            fontSize: 20,
+            // texto no titulo
+            text: "Campeões mais banidos no Bot",
+            // onde? right? left? top?
+            position: 'top',
+            
+
+        },
+        legend: {
+            // mostrar legenda?
+            display: true,
+            // ao contrario? (dataset 1 depois de 2)
+            reverse: true,
+            // onde?
+            position: 'right'
+        },
+    }
+})
+
+// mudando cor de fonte de tudo
+Chart.defaults.global.defaultFontColor = "white";
 
     let usuario;
 
@@ -207,4 +693,163 @@
         sendData();
     }, 5000);
 
+    function toplane() {
+        toplan.style.display = 'block'
+        jglane.style.display = 'none'
+        midlanee.style.display = 'none'
+        adcc.style.display = 'none'
+        supp.style.display = 'none'
+    }
+
+    function jg() {
+        toplan.style.display = 'none'
+        jglane.style.display = 'block'
+        midlanee.style.display = 'none'
+        adcc.style.display = 'none'
+        supp.style.display = 'none'
+    }
+
+    function midlane() {
+        toplan.style.display = 'none'
+        jglane.style.display = 'none'
+        midlanee.style.display = 'block'
+        adcc.style.display = 'none'
+        supp.style.display = 'none'
+    }
+
+    function adc() {
+        toplan.style.display = 'none'
+        jglane.style.display = 'none'
+        midlanee.style.display = 'none'
+        adcc.style.display = 'block'
+        supp.style.display = 'none'
+    }
+
+    function sup() {
+        toplan.style.display = 'none'
+        jglane.style.display = 'none'
+        midlanee.style.display = 'none'
+        adcc.style.display = 'none'
+        supp.style.display = 'block'
+    }
+
+    function random_champ() {
+        var randomchamp = parseInt(Math.random() * 16);
+
+        if (randomchamp == 0) {
+            img_camp.src ="http://pm1.narvii.com/6969/4cfa27c8dcfd8636337d60e6c1f4a7cb693a9bf8r1-380-380v2_00.jpg"
+
+        } else if (randomchamp == 1) {
+            img_camp.src ="https://slm-assets.secondlife.com/assets/20986550/view_large/Ahri_Splash_Tile_0.jpg?1530594252"
+
+        } else if (randomchamp == 2) {
+            img_camp.src ="https://www.esgec.com/wp-content/uploads/2020/12/httpsbubiroyun.comwp-contentuploads201912akali-2.png"
+
+        } else if (randomchamp == 3) {
+            img_camp.src ="https://www.gamersdecide.com/sites/default/files/styles/news_images/public/alistar-face.png"
+
+        } else if (randomchamp == 4) {
+            img_camp.src ="https://lolkolik.com/admin/resimler/Z2Lrq8iO-amumu-classic.png"
+
+        } else if (randomchamp == 5) {
+           img_camp.src = "https://lh3.googleusercontent.com/proxy/KGwJAJ88REXTBdCd29GDEr5tmt2asR0Y_YlVGEUc9AKexNaR4t-lQfm78xtGSGR-fViMHy4j7JHh7McFrI8gmVNJW2DmRjKuSBG-ExFC3x8dm75F-pobnDJ_TKMvsrecwCBNG1K07q2L_c7ei6GX6Zv6opOP9feI1A0OKFDYytE"
+        
+        } else if (randomchamp == 6) {
+           img_camp.src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT3--nHrZZEP-iMBYgdLiZ2-6AUzdmrTnWUSZVW5VSjNuaNvK_5t47YV1Si44MsxTzeXYE&usqp=CAU"
+        
+        } else if (randomchamp == 7) {
+           img_camp.src = "https://steamuserimages-a.akamaihd.net/ugc/789748661921316291/20DE432E4D32EC87D58ABC18F2DCD146EB6B9C25/?imw=512&&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false"
+        
+        } else if (randomchamp == 8) {
+           img_camp.src = "https://okgamer.com/wp-content/uploads/2020/07/Ashe_0.jpg"
+        
+        } else if (randomchamp == 9) {
+           img_camp.src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYYKuZ1GVQuj_uKLumulNdC29UgrZnMfLiIPkozuLRy392kUuyOAbMoSrZxzjSxwD8xBE&usqp=CAU"
+        
+        } else if (randomchamp == 10) {
+           img_camp.src = "https://steamuserimages-a.akamaihd.net/ugc/108481898350549494/403EF2BC69901E3B0ED3CC7375AB5FE87D971597/"
+        
+        } else if (randomchamp == 11) {
+           img_camp.src = "https://www.esgec.com/wp-content/uploads/2020/12/httpsbubiroyun.comwp-contentuploads202001bard.png"
+        
+        } else if (randomchamp == 12) {
+           img_camp.src = "https://www.mobafire.com/images/avatars/blitzcrank-classic.png"
+        
+        } else if (randomchamp == 13) {
+           img_camp.src = "https://www.mobafire.com/images/avatars/brand-classic.png"
+        
+        } else if (randomchamp == 14) {
+           img_camp.src = "https://www.mobafire.com/images/avatars/braum-classic.png"
+        
+        } else if (randomchamp == 15) {
+           img_camp.src = "https://b.thumbs.redditmedia.com/gwyQkEmvIvonVA-hYPUi5hsHvIQJuKLmd1ZtGeFPtqM.png"
+        
+        }
+        
+    }
+
+    function random_build() {
+        var randombuild = parseInt(Math.random() * 15);
+
+        if (randombuild == 0) {
+            img_build.src ="https://preview.redd.it/5bmb0lsh0zb21.png?width=256&format=png&auto=webp&s=08815c67c0cb72bfa773b746b95e2d13dfefb39f"
+
+        } else if (randombuild == 1) {
+            img_build.src ="https://lolstatic-a.akamaihd.net/frontpage/apps/prod/preseason-2018/pt_BR/a6708b7ae3dbc0b25463f9c8e259a513d2c4c7e6/assets/img/runeBuilder/runes/108x108/8008.png"
+
+        } else if (randombuild == 2) {
+            img_build.src ="https://lolstatic-a.akamaihd.net/frontpage/apps/prod/preseason-2018/pt_BR/a6708b7ae3dbc0b25463f9c8e259a513d2c4c7e6/assets/img/runeBuilder/runes/108x108/8005.png"
+        
+        } else if (randombuild == 3) {
+            img_build.src ="https://images.contentstack.io/v3/assets/blt731acb42bb3d1659/blt7701042d8466e4d1/5ed8811098e62f38ec84c8bd/Predator_rune.png"
+
+        } else if (randombuild == 4) {
+            img_build.src ="https://vignette.wikia.nocookie.net/leagueoflegends/images/0/0a/Electrocute_rune.png/revision/latest?cb=20171126182032"
+
+        } else if (randombuild == 5) {
+            img_build.src ="https://vignette.wikia.nocookie.net/leagueoflegends/images/9/9e/Dark_Harvest_rune.png/revision/latest?cb=20171126182324"
+
+        } else if (randombuild == 6) {
+            img_build.src ="https://raw.communitydragon.org/10.24/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/styles/domination/hailofblades/hailofblades.png"
+
+        } else if (randombuild == 7) {
+            img_build.src ="https://i.pinimg.com/originals/6d/0e/09/6d0e090e196987829fa40326b50b72e0.png"
+
+        } else if (randombuild == 8) {
+            img_build.src ="https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Sorcery/PhaseRush/PhaseRush.png"
+
+        } else if (randombuild == 9) {
+            img_build.src ="https://forums.comunidades.riotgames.com/t5/image/serverpage/image-id/7656i9E2BACB349C8ABA4?v=v2"
+
+        } else if (randombuild == 10) {
+            img_build.src ="https://aj-r.github.io/api-challenge-2017/img/runesReforged/perk/8437.png"
+
+        } else if (randombuild == 11) {
+            img_build.src ="https://images.contentstack.io/v3/assets/blt731acb42bb3d1659/blt7e69430e4a41f3c4/5eeade67293eef25d2b6e38c/Guardian_rune.png"
+
+        } else if (randombuild == 12) {
+            img_build.src ="https://opgg-static.akamaized.net/images/lol/perk/8439.png?image=q_auto:best&v=1607480996"
+            
+        } else if (randombuild == 13) {
+            img_build.src ="https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Inspiration/GlacialAugment/GlacialAugment.png"
+            
+        } else if (randombuild == 14) {
+            img_build.src ="https://vignette.wikia.nocookie.net/leagueoflegends/images/a/a9/Unsealed_Spellbook_rune.png/revision/latest?cb=20180406025315"
+            
+        } 
+    }
+
+    function random_map() {
+        var randommap = parseInt(Math.random() * 2);
+
+        if (randommap == 0) {
+            img_map.style.display = 'block';
+            img_map2.style.display = 'none';
+
+        } else if (randommap == 1) {
+            img_map2.style.display = 'block';
+            img_map.style.display = 'none'
+
+        }
+    }
 </script>

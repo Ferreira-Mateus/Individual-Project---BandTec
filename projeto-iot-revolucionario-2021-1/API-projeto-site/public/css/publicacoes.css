@@ -205,7 +205,7 @@ a {
     width: 80%;
     height: 100px;
     display: block;
-    border: 1px solid #d13639;
+    border: 3px solid #d13639;
     border-radius: 5px;
     padding: 5px;
     text-align: left;
@@ -228,4 +228,8 @@ a {
 .feed {
     margin-top: 60px;
     
+}
+
+#area {
+    padding-left: 20px;
 }
