@@ -211,3 +211,61 @@ a {
     margin-left: 50px;
 }
 
+.vetores {
+    height: 600px;
+    width: 100%;
+    background-color: #161616;
+    border-top: 1px solid transparent;
+
+}
+
+.classificacao {
+    height: 400px;
+    width: 80%;
+    margin: auto;
+    margin-top: 100px;
+    
+    text-align: center;
+}
+
+.classificacao h1 {
+    color: white;
+    text-align: center;
+    font-style: italic;
+    font-size: 30px;
+}
+
+.classificacao input {
+    height: 40px;
+    width: 165px;
+    background-color: transparent;
+    color: white;
+    border: solid 1px white;
+    margin-top: 40px;
+    margin-right: 5px;
+    border-radius: 6px;
+}
+
+.classificacao button {
+    height: 44px;
+    width: 140px;
+    color: white;
+    background-color: transparent;
+    border: 2px solid white;
+    border-radius: 30px;
+
+}
+
+#result_classificacao {
+    height: 300px;
+    width: 40%;
+    margin: auto;
+    
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+#mostra_champs {
+    width: 32%;
+}

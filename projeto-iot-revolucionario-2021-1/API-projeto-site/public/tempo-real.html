@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projeto IoT - Tempo Real</title>
+    <title>L Stats | Menu</title>
     <link rel="shortcut icon" href="img/Lstats_logo.svg" type="image/x-icon">
     <link rel="stylesheet" href="css/dashboards.css">
 
@@ -14,20 +14,19 @@
 
     <style>
         /* Classes CSS para exemplos de alertas */
-        
     </style>
 </head>
 
 <body onload="atualizacaoPeriodica()">
-    
+
     <header class="header">
 
         <div class="header_nav">
 
             <a href="#noticia">Menu</a>
-           
+
             <a href="#banner"><img src="img/Lstats_logo.svg" alt="Logo"></a>
-            
+
             <a href="publicacoes.html">Fórum</a>
 
             <a id="img_login" href="index.html">Sair</a>
@@ -138,7 +137,7 @@
         </div>
 
         <div class="build">
-            <button class="button_random" onclick="random_build()">Sortear Build</button> <br>
+            <button class="button_random" onclick="random_build()">Sortear Runa</button> <br>
             <img id="img_build" class="img_random" src="" alt="">
         </div>
 
@@ -150,401 +149,440 @@
 
     </section>
 
+    <section class="vetores">
+        <div class="classificacao">
+            <h1>Escolha seus Mains</h1>
+            <input id="ipt_champ" type="text" placeholder="Digite o nome do Campeão" autofocus>
+            <button onclick="Guardar()">Guardar Campeão</button> <br> <br>
+            <button id="mostra_champs" onclick="Mostrar()">Mostrar Campeões</button>
+
+            <div id="result_classificacao"></div>
+        </div>
+    </section>
+
 </body>
 
 
 <script>
 
-var ctx = document.getElementById('myChart');
+    var campeoes = [];
+    var contador = 0;
 
-// ao criar um new Chart, colocamos ->
-// (contexto, { type, data e options} )
-var meuGrafico = new Chart(ctx, {
-    // TYPE -> qual o tipo do gráfico? será um gráfico de barras? linhas? define aqui
-    type: 'bar',
+    function Guardar() {
+        
+        contador++;
 
-    // DATA -> os dados renderizados no gráfico:
-    data: {
-        labels: [
-            '', 
-        ],
-        datasets: [
-        {
-            label: 'Darius',
-            data: [30.3],
-            borderColor: 'black',
-            backgroundColor: [
-                '#00ABE0',
-                
-            ],
-            hoverOffset: 4,
-        },    
-            
-        {
-            label: 'Urgot',
-            data: [23.4],
-            borderColor: 'black',
-            backgroundColor: [
-                '#F95D48'
-                
-            ],
-            hoverOffset: 4,
-        },
+        if (contador > 5) {
+            alert ('Você não pode escolher mais que 5 Campeões');
 
-        {
-            label: 'Lee Sin',
-            data: [26.3],
-            borderColor: 'black',
-            backgroundColor: [
-                'white'
-                
-            ]
-        }]
-    },
+        } else {
+            campeoes.push (ipt_champ.value);
+        }
 
-    // OPTIONS -> Opções globais
-    options: {
-
-        title: {
-            margin: 20,
-            // mostrar titulo?
-            display: true,
-            // tamanho do texto
-            fontSize: 20,
-            // texto no titulo
-            text: "Campeões mais banidos do Top",
-            // onde? right? left? top?
-            position: 'top',
-            
-
-        },
-        legend: {
-            // mostrar legenda?
-            display: true,
-            // ao contrario? (dataset 1 depois de 2)
-            reverse: true,
-            // onde?
-            position: 'right'
-        },
+        ipt_champ.value = '';
     }
-})
 
-// mudando cor de fonte de tudo
-Chart.defaults.global.defaultFontColor = "white";
-
-
-
-var cty = document.getElementById('myChart2');
-
-// ao criar um new Chart, colocamos ->
-// (contexto, { type, data e options} )
-var meuGrafico = new Chart(cty, {
-    // TYPE -> qual o tipo do gráfico? será um gráfico de barras? linhas? define aqui
-    type: 'bar',
-
-    // DATA -> os dados renderizados no gráfico:
-    data: {
-        labels: [
-            '', 
-        ],
-        datasets: [
-        {
-            label: 'Morgana',
-            data: [40.3],
-            borderColor: 'black',
-            backgroundColor: [
-                '#00ABE0',
-                
-            ],
-            hoverOffset: 4,
-        },    
-            
-        {
-            label: 'Hecarim',
-            data: [26.7],
-            borderColor: 'black',
-            backgroundColor: [
-                '#F95D48'
-                
-            ],
-            hoverOffset: 4,
-        },
-
-        {
-            label: 'Shaco',
-            data: [23],
-            borderColor: 'black',
-            backgroundColor: [
-                'white'
-                
-            ]
-        }]
-    },
-
-    // OPTIONS -> Opções globais
-    options: {
-
-        title: {
-            margin: 20,
-            // mostrar titulo?
-            display: true,
-            // tamanho do texto
-            fontSize: 20,
-            // texto no titulo
-            text: "Campeões mais banidos da Jungle",
-            // onde? right? left? top?
-            position: 'top',
-            
-
-        },
-        legend: {
-            // mostrar legenda?
-            display: true,
-            // ao contrario? (dataset 1 depois de 2)
-            reverse: true,
-            // onde?
-            position: 'right'
-        },
+    function Mostrar() {
+        for (var i = 0; i < campeoes.length; i++) {
+            result_classificacao.innerHTML += `<br><span style="text-align: center; color: white; font-size: 26px">${i + 1}º - ${campeoes[i]}</span>`
+        }
     }
-})
-
-// mudando cor de fonte de tudo
-Chart.defaults.global.defaultFontColor = "white";
 
 
 
-var ctz = document.getElementById('myChart3');
 
-// ao criar um new Chart, colocamos ->
-// (contexto, { type, data e options} )
-var meuGrafico = new Chart(ctz, {
-    // TYPE -> qual o tipo do gráfico? será um gráfico de barras? linhas? define aqui
-    type: 'bar',
 
-    // DATA -> os dados renderizados no gráfico:
-    data: {
-        labels: [
-            '', 
-        ],
-        datasets: [
-        {
-            label: 'Sylas',
-            data: [23.3],
-            borderColor: 'black',
-            backgroundColor: [
-                '#00ABE0',
-                
+
+    var ctx = document.getElementById('myChart');
+
+    // ao criar um new Chart, colocamos ->
+    // (contexto, { type, data e options} )
+    var meuGrafico = new Chart(ctx, {
+        // TYPE -> qual o tipo do gráfico? será um gráfico de barras? linhas? define aqui
+        type: 'bar',
+
+        // DATA -> os dados renderizados no gráfico:
+        data: {
+            labels: [
+                '',
             ],
-            hoverOffset: 4,
-        },    
-            
-        {
-            label: 'Rumble',
-            data: [30.7],
-            borderColor: 'black',
-            backgroundColor: [
-                '#F95D48'
-                
+            datasets: [
+                {
+                    label: 'Darius',
+                    data: [30.3],
+                    borderColor: 'black',
+                    backgroundColor: [
+                        '#00ABE0',
+
+                    ],
+                    hoverOffset: 4,
+                },
+
+                {
+                    label: 'Urgot',
+                    data: [23.4],
+                    borderColor: 'black',
+                    backgroundColor: [
+                        '#F95D48'
+
+                    ],
+                    hoverOffset: 4,
+                },
+
+                {
+                    label: 'Lee Sin',
+                    data: [26.3],
+                    borderColor: 'black',
+                    backgroundColor: [
+                        'white'
+
+                    ]
+                }]
+        },
+
+        // OPTIONS -> Opções globais
+        options: {
+
+            title: {
+                margin: 20,
+                // mostrar titulo?
+                display: true,
+                // tamanho do texto
+                fontSize: 20,
+                // texto no titulo
+                text: "Campeões mais banidos do Top",
+                // onde? right? left? top?
+                position: 'top',
+
+
+            },
+            legend: {
+                // mostrar legenda?
+                display: true,
+                // ao contrario? (dataset 1 depois de 2)
+                reverse: true,
+                // onde?
+                position: 'right'
+            },
+        }
+    })
+
+    // mudando cor de fonte de tudo
+    Chart.defaults.global.defaultFontColor = "white";
+
+
+
+    var cty = document.getElementById('myChart2');
+
+    // ao criar um new Chart, colocamos ->
+    // (contexto, { type, data e options} )
+    var meuGrafico = new Chart(cty, {
+        // TYPE -> qual o tipo do gráfico? será um gráfico de barras? linhas? define aqui
+        type: 'bar',
+
+        // DATA -> os dados renderizados no gráfico:
+        data: {
+            labels: [
+                '',
             ],
-            hoverOffset: 4,
+            datasets: [
+                {
+                    label: 'Morgana',
+                    data: [40.3],
+                    borderColor: 'black',
+                    backgroundColor: [
+                        '#00ABE0',
+
+                    ],
+                    hoverOffset: 4,
+                },
+
+                {
+                    label: 'Hecarim',
+                    data: [26.7],
+                    borderColor: 'black',
+                    backgroundColor: [
+                        '#F95D48'
+
+                    ],
+                    hoverOffset: 4,
+                },
+
+                {
+                    label: 'Shaco',
+                    data: [23],
+                    borderColor: 'black',
+                    backgroundColor: [
+                        'white'
+
+                    ]
+                }]
         },
 
-        {
-            label: 'Yasuo',
-            data: [40],
-            borderColor: 'black',
-            backgroundColor: [
-                'white'
-                
-            ]
-        }]
-    },
+        // OPTIONS -> Opções globais
+        options: {
 
-    // OPTIONS -> Opções globais
-    options: {
-
-        title: {
-            margin: 20,
-            // mostrar titulo?
-            display: true,
-            // tamanho do texto
-            fontSize: 20,
-            // texto no titulo
-            text: "Campeões mais banidos do Mid",
-            // onde? right? left? top?
-            position: 'top',
-            
-
-        },
-        legend: {
-            // mostrar legenda?
-            display: true,
-            // ao contrario? (dataset 1 depois de 2)
-            reverse: true,
-            // onde?
-            position: 'right'
-        },
-    }
-})
-
-// mudando cor de fonte de tudo
-Chart.defaults.global.defaultFontColor = "white";
+            title: {
+                margin: 20,
+                // mostrar titulo?
+                display: true,
+                // tamanho do texto
+                fontSize: 20,
+                // texto no titulo
+                text: "Campeões mais banidos da Jungle",
+                // onde? right? left? top?
+                position: 'top',
 
 
-var ctb = document.getElementById('myChart4');
+            },
+            legend: {
+                // mostrar legenda?
+                display: true,
+                // ao contrario? (dataset 1 depois de 2)
+                reverse: true,
+                // onde?
+                position: 'right'
+            },
+        }
+    })
 
-// ao criar um new Chart, colocamos ->
-// (contexto, { type, data e options} )
-var meuGrafico = new Chart(ctb, {
-    // TYPE -> qual o tipo do gráfico? será um gráfico de barras? linhas? define aqui
-    type: 'bar',
+    // mudando cor de fonte de tudo
+    Chart.defaults.global.defaultFontColor = "white";
 
-    // DATA -> os dados renderizados no gráfico:
-    data: {
-        labels: [
-            '', 
-        ],
-        datasets: [
-        {
-            label: 'Samira',
-            data: [50],
-            borderColor: 'black',
-            backgroundColor: [
-                '#00ABE0',
-                
+
+
+    var ctz = document.getElementById('myChart3');
+
+    // ao criar um new Chart, colocamos ->
+    // (contexto, { type, data e options} )
+    var meuGrafico = new Chart(ctz, {
+        // TYPE -> qual o tipo do gráfico? será um gráfico de barras? linhas? define aqui
+        type: 'bar',
+
+        // DATA -> os dados renderizados no gráfico:
+        data: {
+            labels: [
+                '',
             ],
-            hoverOffset: 4,
-        },    
-            
-        {
-            label: 'Kai`sa',
-            data: [26.7],
-            borderColor: 'black',
-            backgroundColor: [
-                '#F95D48'
-                
+            datasets: [
+                {
+                    label: 'Sylas',
+                    data: [23.3],
+                    borderColor: 'black',
+                    backgroundColor: [
+                        '#00ABE0',
+
+                    ],
+                    hoverOffset: 4,
+                },
+
+                {
+                    label: 'Rumble',
+                    data: [30.7],
+                    borderColor: 'black',
+                    backgroundColor: [
+                        '#F95D48'
+
+                    ],
+                    hoverOffset: 4,
+                },
+
+                {
+                    label: 'Yasuo',
+                    data: [40],
+                    borderColor: 'black',
+                    backgroundColor: [
+                        'white'
+
+                    ]
+                }]
+        },
+
+        // OPTIONS -> Opções globais
+        options: {
+
+            title: {
+                margin: 20,
+                // mostrar titulo?
+                display: true,
+                // tamanho do texto
+                fontSize: 20,
+                // texto no titulo
+                text: "Campeões mais banidos do Mid",
+                // onde? right? left? top?
+                position: 'top',
+
+
+            },
+            legend: {
+                // mostrar legenda?
+                display: true,
+                // ao contrario? (dataset 1 depois de 2)
+                reverse: true,
+                // onde?
+                position: 'right'
+            },
+        }
+    })
+
+    // mudando cor de fonte de tudo
+    Chart.defaults.global.defaultFontColor = "white";
+
+
+    var ctb = document.getElementById('myChart4');
+
+    // ao criar um new Chart, colocamos ->
+    // (contexto, { type, data e options} )
+    var meuGrafico = new Chart(ctb, {
+        // TYPE -> qual o tipo do gráfico? será um gráfico de barras? linhas? define aqui
+        type: 'bar',
+
+        // DATA -> os dados renderizados no gráfico:
+        data: {
+            labels: [
+                '',
             ],
-            hoverOffset: 4,
+            datasets: [
+                {
+                    label: 'Samira',
+                    data: [50],
+                    borderColor: 'black',
+                    backgroundColor: [
+                        '#00ABE0',
+
+                    ],
+                    hoverOffset: 4,
+                },
+
+                {
+                    label: 'Kai`sa',
+                    data: [26.7],
+                    borderColor: 'black',
+                    backgroundColor: [
+                        '#F95D48'
+
+                    ],
+                    hoverOffset: 4,
+                },
+
+                {
+                    label: 'Tristana',
+                    data: [23],
+                    borderColor: 'black',
+                    backgroundColor: [
+                        'white'
+
+                    ]
+                }]
         },
 
-        {
-            label: 'Tristana',
-            data: [23],
-            borderColor: 'black',
-            backgroundColor: [
-                'white'
-                
-            ]
-        }]
-    },
+        // OPTIONS -> Opções globais
+        options: {
 
-    // OPTIONS -> Opções globais
-    options: {
-
-        title: {
-            margin: 20,
-            // mostrar titulo?
-            display: true,
-            // tamanho do texto
-            fontSize: 20,
-            // texto no titulo
-            text: "Campeões mais banidos no Bot",
-            // onde? right? left? top?
-            position: 'top',
-            
-
-        },
-        legend: {
-            // mostrar legenda?
-            display: true,
-            // ao contrario? (dataset 1 depois de 2)
-            reverse: true,
-            // onde?
-            position: 'right'
-        },
-    }
-})
-
-// mudando cor de fonte de tudo
-Chart.defaults.global.defaultFontColor = "white";
+            title: {
+                margin: 20,
+                // mostrar titulo?
+                display: true,
+                // tamanho do texto
+                fontSize: 20,
+                // texto no titulo
+                text: "Campeões mais banidos no Bot",
+                // onde? right? left? top?
+                position: 'top',
 
 
-var ctv = document.getElementById('myChart5');
+            },
+            legend: {
+                // mostrar legenda?
+                display: true,
+                // ao contrario? (dataset 1 depois de 2)
+                reverse: true,
+                // onde?
+                position: 'right'
+            },
+        }
+    })
 
-// ao criar um new Chart, colocamos ->
-// (contexto, { type, data e options} )
-var meuGrafico = new Chart(ctv, {
-    // TYPE -> qual o tipo do gráfico? será um gráfico de barras? linhas? define aqui
-    type: 'bar',
+    // mudando cor de fonte de tudo
+    Chart.defaults.global.defaultFontColor = "white";
 
-    // DATA -> os dados renderizados no gráfico:
-    data: {
-        labels: [
-            '', 
-        ],
-        datasets: [
-        {
-            label: 'lulu',
-            data: [43],
-            borderColor: 'black',
-            backgroundColor: [
-                '#00ABE0',
-                
+
+    var ctv = document.getElementById('myChart5');
+
+    // ao criar um new Chart, colocamos ->
+    // (contexto, { type, data e options} )
+    var meuGrafico = new Chart(ctv, {
+        // TYPE -> qual o tipo do gráfico? será um gráfico de barras? linhas? define aqui
+        type: 'bar',
+
+        // DATA -> os dados renderizados no gráfico:
+        data: {
+            labels: [
+                '',
             ],
-            hoverOffset: 4,
-        },    
-            
-        {
-            label: 'thresh',
-            data: [26.7],
-            borderColor: 'black',
-            backgroundColor: [
-                '#F95D48'
-                
-            ],
-            hoverOffset: 4,
+            datasets: [
+                {
+                    label: 'lulu',
+                    data: [43],
+                    borderColor: 'black',
+                    backgroundColor: [
+                        '#00ABE0',
+
+                    ],
+                    hoverOffset: 4,
+                },
+
+                {
+                    label: 'thresh',
+                    data: [26.7],
+                    borderColor: 'black',
+                    backgroundColor: [
+                        '#F95D48'
+
+                    ],
+                    hoverOffset: 4,
+                },
+
+                {
+                    label: 'Rell',
+                    data: [25],
+                    borderColor: 'black',
+                    backgroundColor: [
+                        'white'
+
+                    ]
+                }]
         },
 
-        {
-            label: 'Rell',
-            data: [25],
-            borderColor: 'black',
-            backgroundColor: [
-                'white'
-                
-            ]
-        }]
-    },
+        // OPTIONS -> Opções globais
+        options: {
 
-    // OPTIONS -> Opções globais
-    options: {
+            title: {
+                margin: 20,
+                // mostrar titulo?
+                display: true,
+                // tamanho do texto
+                fontSize: 20,
+                // texto no titulo
+                text: "Campeões mais banidos no Bot",
+                // onde? right? left? top?
+                position: 'top',
 
-        title: {
-            margin: 20,
-            // mostrar titulo?
-            display: true,
-            // tamanho do texto
-            fontSize: 20,
-            // texto no titulo
-            text: "Campeões mais banidos no Bot",
-            // onde? right? left? top?
-            position: 'top',
-            
 
-        },
-        legend: {
-            // mostrar legenda?
-            display: true,
-            // ao contrario? (dataset 1 depois de 2)
-            reverse: true,
-            // onde?
-            position: 'right'
-        },
-    }
-})
+            },
+            legend: {
+                // mostrar legenda?
+                display: true,
+                // ao contrario? (dataset 1 depois de 2)
+                reverse: true,
+                // onde?
+                position: 'right'
+            },
+        }
+    })
 
-// mudando cor de fonte de tudo
-Chart.defaults.global.defaultFontColor = "white";
+    // mudando cor de fonte de tudo
+    Chart.defaults.global.defaultFontColor = "white";
 
     let usuario;
 
@@ -552,147 +590,7 @@ Chart.defaults.global.defaultFontColor = "white";
 
     // só mexer se quiser alterar o tempo de atualização
     // ou se souber o que está fazendo!
-    function atualizacaoPeriodica() {
-        obterdadosporcaminhao(1);
-        obterdadosporcaminhao(2);
-        obterdadosporcaminhao(3);
-        obterdadosporcaminhao(4);
-        setTimeout(atualizacaoPeriodica, 5000);
-    }
-
     
-
-    function obterdadosporcaminhao(idcaminhao) {
-        //aguardar();
-        fetch(`/leituras/tempo-real/${idcaminhao}`)
-        .then(resposta => {
-
-            if (resposta.ok) {
-                resposta.json().then(function (resposta) {
-
-                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-
-                    // aqui, após registro. use os nomes 
-                    // dos atributos que vem no JSON 
-                    var dados = {
-                        temperatura: resposta.temperatura,
-                        umidade: resposta.umidade
-                    }
-
-                    alertar(resposta.temperatura, resposta.umidade, idcaminhao);
-                    atualizarTela(dados, idcaminhao);
-                });
-            } else {
-
-                console.error('Nenhum dado encontrado ou erro na API');
-            }
-        })
-        .catch(function (error) {
-                console.error(`Erro na obtenção dos dados do caminhao p/ gráfico: ${error.message}`);
-            });
-    }
-
-    function alertar(temperatura, umidade, idcaminhao) {
-        // padrão para meu alerta
-        var limites = {
-            max_temperatura: 40,
-            min_temperatura: 20,
-            max_umidade: 80,
-            min_umidade: 50,
-        };
-
-        // zerar aviso de mensagem
-        var mensagem_temperatura = '';
-        var mensagem_umidade = '';
-        var classe_temperatura = 'alerta';
-        var classe_umidade = 'alerta_umidd';
-
-        // comparando
-        if (temperatura > limites.max_temperatura) {
-            mensagem_temperatura += 'Temperatura alta demais! <br>';
-            classe_temperatura = 'alerta alerta-alto';
-        }
-        if (umidade > limites.max_umidade) {
-            mensagem_umidade += 'Umidade alta demais! <br>';
-            classe_umidade = 'alerta_umidd alerta-alto';
-        }
-        if (temperatura < limites.min_temperatura) {
-            mensagem_temperatura = 'Temperatura baixa demais! <br>';
-            classe_temperatura = 'alerta alerta-baixo';
-        }
-        if (umidade < limites.min_umidade) {
-            mensagem_umidade = 'Umidade baixa demais! <br>';
-            classe_umidade = 'alerta_umidd alerta-baixo';
-        }
-
-        // escolhendo qual alterar
-        var div_temperatura_alterar
-        var div_umidade_alterar
-
-        if (idcaminhao == 1) {
-            div_temperatura_alterar = div_alerta_temperatura
-            div_umidade_alterar = div_alerta_umidade
-        } else if (idcaminhao == 2) {
-            div_temperatura_alterar = div_alerta_temperatura2
-            div_umidade_alterar = div_alerta_umidade2
-        } else if (idcaminhao == 3) {
-            div_temperatura_alterar = div_alerta_temperatura3
-            div_umidade_alterar = div_alerta_umidade3
-        } else if (idcaminhao == 4) {
-            div_temperatura_alterar = div_alerta_temperatura4
-            div_umidade_alterar = div_alerta_umidade4
-        }
-
-        // alterando
-        div_temperatura_alterar.innerHTML = mensagem_temperatura;
-        div_temperatura_alterar.className = classe_temperatura;
-
-        div_umidade_alterar.innerHTML = mensagem_umidade;
-        div_umidade_alterar.className = classe_umidade;
-    }
-
-    // só altere aqui se souber o que está fazendo!
-    function atualizarTela(dados, idcaminhao) {
-        console.log('iniciando atualização da tela...');
-
-        // escolhendo qual alterar
-        var div_temperatura_alterar
-        var div_umidade_alterar
-
-        if (idcaminhao == 1) {
-            div_temperatura_alterar = div_temperatura
-            div_umidade_alterar = div_umidade
-        } else if (idcaminhao == 2) {
-            div_temperatura_alterar = div_temperatura2
-            div_umidade_alterar = div_umidade2
-        } else if (idcaminhao == 3) {
-            div_temperatura_alterar = div_temperatura3
-            div_umidade_alterar = div_umidade3
-        } else if (idcaminhao == 4) {
-            div_temperatura_alterar = div_temperatura4
-            div_umidade_alterar = div_umidade4
-        }
-
-        div_temperatura_alterar.innerHTML = `Temperatura: ${dados.temperatura}º`;
-
-        div_umidade_alterar.innerHTML = `Umidade: ${dados.umidade}%`;
-
-        
-
-    }
-
-
-    function sendData() {
-        var http = new XMLHttpRequest();
-        http.open('GET', 'http://localhost:9001/api/sendData', false);
-        http.send(null);
-    }
-
-    // Descomente abaixo se quiser inserir dados a cada X segundos  
-    setInterval(() => {
-        sendData();
-    }, 5000);
-
     function toplane() {
         toplan.style.display = 'block'
         jglane.style.display = 'none'
@@ -734,109 +632,521 @@ Chart.defaults.global.defaultFontColor = "white";
     }
 
     function random_champ() {
-        var randomchamp = parseInt(Math.random() * 16);
+        var randomchamp = parseInt(Math.random() * 152);
 
         if (randomchamp == 0) {
-            img_camp.src ="http://pm1.narvii.com/6969/4cfa27c8dcfd8636337d60e6c1f4a7cb693a9bf8r1-380-380v2_00.jpg"
+            img_camp.src = "http://pm1.narvii.com/6969/4cfa27c8dcfd8636337d60e6c1f4a7cb693a9bf8r1-380-380v2_00.jpg"
 
         } else if (randomchamp == 1) {
-            img_camp.src ="https://slm-assets.secondlife.com/assets/20986550/view_large/Ahri_Splash_Tile_0.jpg?1530594252"
+            img_camp.src = "https://slm-assets.secondlife.com/assets/20986550/view_large/Ahri_Splash_Tile_0.jpg?1530594252"
 
         } else if (randomchamp == 2) {
-            img_camp.src ="https://www.esgec.com/wp-content/uploads/2020/12/httpsbubiroyun.comwp-contentuploads201912akali-2.png"
+            img_camp.src = "https://www.esgec.com/wp-content/uploads/2020/12/httpsbubiroyun.comwp-contentuploads201912akali-2.png"
 
         } else if (randomchamp == 3) {
-            img_camp.src ="https://www.gamersdecide.com/sites/default/files/styles/news_images/public/alistar-face.png"
+            img_camp.src = "https://www.gamersdecide.com/sites/default/files/styles/news_images/public/alistar-face.png"
 
         } else if (randomchamp == 4) {
-            img_camp.src ="https://lolkolik.com/admin/resimler/Z2Lrq8iO-amumu-classic.png"
+            img_camp.src = "https://lolkolik.com/admin/resimler/Z2Lrq8iO-amumu-classic.png"
 
         } else if (randomchamp == 5) {
-           img_camp.src = "https://lh3.googleusercontent.com/proxy/KGwJAJ88REXTBdCd29GDEr5tmt2asR0Y_YlVGEUc9AKexNaR4t-lQfm78xtGSGR-fViMHy4j7JHh7McFrI8gmVNJW2DmRjKuSBG-ExFC3x8dm75F-pobnDJ_TKMvsrecwCBNG1K07q2L_c7ei6GX6Zv6opOP9feI1A0OKFDYytE"
-        
+            img_camp.src = "https://lh3.googleusercontent.com/proxy/KGwJAJ88REXTBdCd29GDEr5tmt2asR0Y_YlVGEUc9AKexNaR4t-lQfm78xtGSGR-fViMHy4j7JHh7McFrI8gmVNJW2DmRjKuSBG-ExFC3x8dm75F-pobnDJ_TKMvsrecwCBNG1K07q2L_c7ei6GX6Zv6opOP9feI1A0OKFDYytE"
+
         } else if (randomchamp == 6) {
-           img_camp.src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT3--nHrZZEP-iMBYgdLiZ2-6AUzdmrTnWUSZVW5VSjNuaNvK_5t47YV1Si44MsxTzeXYE&usqp=CAU"
-        
+            img_camp.src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT3--nHrZZEP-iMBYgdLiZ2-6AUzdmrTnWUSZVW5VSjNuaNvK_5t47YV1Si44MsxTzeXYE&usqp=CAU"
+
         } else if (randomchamp == 7) {
-           img_camp.src = "https://steamuserimages-a.akamaihd.net/ugc/789748661921316291/20DE432E4D32EC87D58ABC18F2DCD146EB6B9C25/?imw=512&&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false"
-        
+            img_camp.src = "https://steamuserimages-a.akamaihd.net/ugc/789748661921316291/20DE432E4D32EC87D58ABC18F2DCD146EB6B9C25/?imw=512&&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false"
+
         } else if (randomchamp == 8) {
-           img_camp.src = "https://okgamer.com/wp-content/uploads/2020/07/Ashe_0.jpg"
-        
+            img_camp.src = "https://okgamer.com/wp-content/uploads/2020/07/Ashe_0.jpg"
+
         } else if (randomchamp == 9) {
-           img_camp.src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYYKuZ1GVQuj_uKLumulNdC29UgrZnMfLiIPkozuLRy392kUuyOAbMoSrZxzjSxwD8xBE&usqp=CAU"
-        
+            img_camp.src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYYKuZ1GVQuj_uKLumulNdC29UgrZnMfLiIPkozuLRy392kUuyOAbMoSrZxzjSxwD8xBE&usqp=CAU"
+
         } else if (randomchamp == 10) {
-           img_camp.src = "https://steamuserimages-a.akamaihd.net/ugc/108481898350549494/403EF2BC69901E3B0ED3CC7375AB5FE87D971597/"
-        
+            img_camp.src = "https://steamuserimages-a.akamaihd.net/ugc/108481898350549494/403EF2BC69901E3B0ED3CC7375AB5FE87D971597/"
+
         } else if (randomchamp == 11) {
-           img_camp.src = "https://www.esgec.com/wp-content/uploads/2020/12/httpsbubiroyun.comwp-contentuploads202001bard.png"
-        
+            img_camp.src = "https://www.esgec.com/wp-content/uploads/2020/12/httpsbubiroyun.comwp-contentuploads202001bard.png"
+
         } else if (randomchamp == 12) {
-           img_camp.src = "https://www.mobafire.com/images/avatars/blitzcrank-classic.png"
-        
+            img_camp.src = "https://www.mobafire.com/images/avatars/blitzcrank-classic.png"
+
         } else if (randomchamp == 13) {
-           img_camp.src = "https://www.mobafire.com/images/avatars/brand-classic.png"
-        
+            img_camp.src = "https://www.mobafire.com/images/avatars/brand-classic.png"
+
         } else if (randomchamp == 14) {
-           img_camp.src = "https://www.mobafire.com/images/avatars/braum-classic.png"
-        
+            img_camp.src = "https://www.mobafire.com/images/avatars/braum-classic.png"
+
         } else if (randomchamp == 15) {
-           img_camp.src = "https://b.thumbs.redditmedia.com/gwyQkEmvIvonVA-hYPUi5hsHvIQJuKLmd1ZtGeFPtqM.png"
-        
+            img_camp.src = "https://b.thumbs.redditmedia.com/gwyQkEmvIvonVA-hYPUi5hsHvIQJuKLmd1ZtGeFPtqM.png"
+
+        } else if (randomchamp == 16) {
+            img_camp.src = "https://www.mobafire.com/images/avatars/camille-classic.png"
+
+        } else if (randomchamp == 17) {
+            img_camp.src = "https://www.mobafire.com/images/avatars/cassiopeia-classic.png"
+
+        } else if (randomchamp == 18) {
+            img_camp.src = "https://www.mobafire.com/images/avatars/chogath-classic.png"
+
+        } else if (randomchamp == 19) {
+            img_camp.src = "https://www.mobafire.com/images/avatars/corki-classic.png"
+
+        } else if (randomchamp == 20) {
+            img_camp.src = "https://www.mobafire.com/images/avatars/darius-classic.png"
+
+        } else if (randomchamp == 21) {
+            img_camp.src = "https://www.mobafire.com/images/avatars/diana-classic.png"
+
+        } else if (randomchamp == 22) {
+            img_camp.src = "https://images.contentstack.io/v3/assets/blt731acb42bb3d1659/blt8bccc401a842ce7a/5ed7f58a4e88032c940ca233/Author_Icon_Mundo_Team.png"
+
+        } else if (randomchamp == 23) {
+            img_camp.src = "https://www.mobafire.com/images/avatars/draven-gladiator.png"
+
+        } else if (randomchamp == 24) {
+            img_camp.src = "https://www.mobafire.com/images/avatars/ekko-classic.png"
+
+        } else if (randomchamp == 25) {
+            img_camp.src = "https://www.mobafire.com/images/avatars/elise-classic.png"
+
+        } else if (randomchamp == 26) {
+            img_camp.src = "https://www.mobafire.com/images/avatars/evelynn-classic.png"
+
+        } else if (randomchamp == 27) {
+            img_camp.src = "https://www.mobafire.com/images/avatars/ezreal-classic.png"
+
+        } else if (randomchamp == 28) {
+            img_camp.src = "https://www.mobafire.com/images/avatars/fiddlesticks-classic.png"
+
+        } else if (randomchamp == 29) {
+            img_camp.src = "https://www.mobafire.com/images/avatars/fiora-classic.png"
+
+        } else if (randomchamp == 30) {
+            img_camp.src = "https://www.mobafire.com/images/avatars/fizz-classic.png"
+
+        } else if (randomchamp == 31) {
+            img_camp.src = "https://www.mobafire.com/images/avatars/galio-classic.png"
+
+        } else if (randomchamp == 32) {
+            img_camp.src = "https://www.mobafire.com/images/avatars/gangplank-classic.png"
+
+        } else if (randomchamp == 33) {
+            img_camp.src = "https://www.mobafire.com/images/avatars/garen-classic.png"
+
+        } else if (randomchamp == 34) {
+            img_camp.src = "https://www.mobafire.com/images/avatars/gnar-classic.png"
+
+        } else if (randomchamp == 35) {
+            img_camp.src = "https://www.mobafire.com/images/avatars/gragas-classic.png"
+
+        } else if (randomchamp == 36) {
+            img_camp.src = "https://www.mobafire.com/images/avatars/graves-classic.png"
+
+        } else if (randomchamp == 37) {
+            img_camp.src = "https://www.mobafire.com/images/avatars/gwen-classic.png"
+
+        } else if (randomchamp == 38) {
+            img_camp.src = "https://www.mobafire.com/images/avatars/hecarim-classic.png"
+
+        } else if (randomchamp == 39) {
+            img_camp.src = "https://lolimpact.com/wp-content/uploads/2016/08/Heimerdinger_Splash_Tile_0.jpg"
+
+        } else if (randomchamp == 40) {
+            img_camp.src = "https://www.mobafire.com/images/avatars/illaoi-classic.png"
+
+        } else if (randomchamp == 41) {
+            img_camp.src = "https://lolstatic-a.akamaihd.net/frontpage/apps/prod/rg-irelia-reveal/pt_BR/abd275e634ae15e22975cdeb5d03b65df6b65180/assets/img/content/wallpaper/base-thumb.jpg"
+
+        } else if (randomchamp == 42) {
+            img_camp.src = "https://www.mobafire.com/images/avatars/ivern-classic.png"
+
+        } else if (randomchamp == 43) {
+            img_camp.src = "https://www.mobafire.com/images/avatars/janna-classic.png"
+
+        } else if (randomchamp == 44) {
+            img_camp.src = "https://www.mobafire.com/images/avatars/jarvan-iv-classic.png"
+
+        } else if (randomchamp == 45) {
+            img_camp.src = "https://www.mobafire.com/images/avatars/jax-classic.png"
+
+        } else if (randomchamp == 46) {
+            img_camp.src = "https://www.mobafire.com/images/avatars/jayce-classic.png"
+
+        } else if (randomchamp == 47) {
+            img_camp.src = "https://www.mobafire.com/images/avatars/jhin-classic.png"
+
+        } else if (randomchamp == 48) {
+            img_camp.src = "https://www.mobafire.com/images/avatars/jinx-classic.png"
+
+        } else if (randomchamp == 49) {
+            img_camp.src = "https://lolstatic-a.akamaihd.net/frontpage/apps/prod/kaisa-reveal/pt_BR/4b3ba0751b18398c0fe8d339207ba00a26309de1/assets/img/content/wallpaper/base-icon.jpg"
+
+        } else if (randomchamp == 50) {
+            img_camp.src = "https://www.mobafire.com/images/avatars/kalista-classic.png"
+
+        } else if (randomchamp == 51) {
+            img_camp.src = "https://www.mobafire.com/images/avatars/karma-classic.png"
+
+        } else if (randomchamp == 52) {
+            img_camp.src = "https://www.mobafire.com/images/champion/square/karthus.png"
+
+        } else if (randomchamp == 53) {
+            img_camp.src = "http://tocchientv.com/wp-content/uploads/2019/03/kassadin.png"
+
+        } else if (randomchamp == 54) {
+            img_camp.src = "https://www.mobafire.com/images/avatars/katarina-classic.png"
+
+        } else if (randomchamp == 55) {
+            img_camp.src = "https://www.mobafire.com/images/avatars/kayle-classic.png"
+
+        } else if (randomchamp == 56) {
+            img_camp.src = "https://www.mobafire.com/images/champion/square/kayn.png"
+ 
+        } else if (randomchamp == 57) {
+            img_camp.src = "https://www.mobafire.com/images/avatars/kennen-classic.png"
+
+        } else if (randomchamp == 58) {
+            img_camp.src = "https://www.mobafire.com/images/champion/square/khazix.png"
+
+        } else if (randomchamp == 59) {
+            img_camp.src = "https://www.mobafire.com/images/avatars/kled-classic.png"
+
+        } else if (randomchamp == 60) {
+            img_camp.src = "https://d181w3hxxigzvh.cloudfront.net/wp-content/uploads/2017/09/KogMaw_Splash_Tile_0.jpg"
+
+        } else if (randomchamp == 61) {
+            img_camp.src = "https://www.mobafire.com/images/avatars/leblanc-classic.png"
+
+        } else if (randomchamp == 62) {
+            img_camp.src = "https://www.mobafire.com/images/avatars/lee-sin-classic.png"
+
+        } else if (randomchamp == 63) {
+            img_camp.src = "https://www.mobafire.com/images/avatars/leona-classic.png"
+
+        } else if (randomchamp == 64) {
+            img_camp.src = "https://www.mobafire.com/images/champion/square/lillia.png"
+
+        } else if (randomchamp == 65) {
+            img_camp.src = "https://www.mobafire.com/images/champion/square/lissandra.png"
+
+        } else if (randomchamp == 66) {
+            img_camp.src = "https://www.mobafire.com/images/avatars/lucian-classic.png"
+
+        } else if (randomchamp == 67) {
+            img_camp.src = "https://www.mobafire.com/images/avatars/lulu-classic.png"
+
+        } else if (randomchamp == 68) {
+            img_camp.src = "https://www.mobafire.com/images/avatars/lux-classic.png"
+
+        } else if (randomchamp == 69) {
+            img_camp.src = "https://www.mobafire.com/images/avatars/malphite-classic.png"
+
+        } else if (randomchamp == 70) {
+            img_camp.src = "https://www.mobafire.com/images/avatars/malzahar-classic.png"
+
+        } else if (randomchamp == 71) {
+            img_camp.src = "https://www.mobafire.com/images/avatars/maokai-classic.png"
+
+        } else if (randomchamp == 72) {
+            img_camp.src = "https://www.mobafire.com/images/avatars/master-yi-classic.png"
+
+        } else if (randomchamp == 73) {
+            img_camp.src = "https://www.mobafire.com/images/avatars/miss-fortune-classic.png"
+
+        } else if (randomchamp == 74) {
+            img_camp.src = "https://www.mobafire.com/images/champion/square/mordekaiser.png"
+
+        } else if (randomchamp == 75) {
+            img_camp.src = "https://www.mobafire.com/images/avatars/morgana-classic.png"
+
+        } else if (randomchamp == 76) {
+            img_camp.src = "https://www.mobafire.com/images/avatars/nami-classic.png"
+
+        } else if (randomchamp == 77) {
+            img_camp.src = "https://www.mobafire.com/images/avatars/nasus-classic.png"
+
+        } else if (randomchamp == 78) {
+            img_camp.src = "https://www.mobafire.com/images/avatars/nautilus-classic.png"
+
+        } else if (randomchamp == 79) {
+            img_camp.src = "https://www.mobafire.com/images/avatars/neeko-classic.png"
+
+        } else if (randomchamp == 80) {
+            img_camp.src = "https://acqwmovtio.cloudimg.io/v7/https://ddragon.leagueoflegends.com/cdn/11.7.1/img/champion/Nidalee.png?height=250"
+
+        } else if (randomchamp == 81) {
+            img_camp.src = "https://www.mobafire.com/images/avatars/nocturne-classic.png"
+
+        } else if (randomchamp == 82) {
+            img_camp.src = "https://www.mobafire.com/images/avatars/nunu-amp-willump-classic.png"
+
+        } else if (randomchamp == 83) {
+            img_camp.src = "https://www.mobafire.com/images/avatars/olaf-classic.png"
+
+        } else if (randomchamp == 84) {
+            img_camp.src = "https://www.mobafire.com/images/avatars/orianna-classic.png"
+
+        } else if (randomchamp == 85) {
+            img_camp.src = "https://www.mobafire.com/images/champion/square/ornn.png"
+
+        } else if (randomchamp == 86) {
+            img_camp.src = "https://www.mobafire.com/images/avatars/pantheon-classic.png"
+
+        } else if (randomchamp == 87) {
+            img_camp.src = "https://www.mobafire.com/images/avatars/poppy-classic.png"
+
+        } else if (randomchamp == 88) {
+            img_camp.src = "https://www.mobafire.com/images/avatars/pyke-classic.png"
+
+        } else if (randomchamp == 89) {
+            img_camp.src = "https://www.mobafire.com/images/champion/square/qiyana.png"
+
+        } else if (randomchamp == 90) {
+            img_camp.src = "https://www.mobafire.com/images/champion/square/quinn.png"
+
+        } else if (randomchamp == 91) {
+            img_camp.src = "https://www.mobafire.com/images/champion/square/rakan.png"
+
+        } else if (randomchamp == 92) {
+            img_camp.src = "https://www.mobafire.com/images/champion/square/rammus.png"
+
+        } else if (randomchamp == 93) {
+            img_camp.src = "https://www.mobafire.com/images/champion/square/reksai.png"
+
+        } else if (randomchamp == 94) {
+            img_camp.src = "https://www.mobafire.com/images/champion/square/rell.png"
+
+        } else if (randomchamp == 95) {
+            img_camp.src = "https://www.mobafire.com/images/champion/square/renekton.png"
+
+        } else if (randomchamp == 96) {
+            img_camp.src = "https://www.mobafire.com/images/champion/square/rengar.png"
+
+        } else if (randomchamp == 97) {
+            img_camp.src = "https://www.mobafire.com/images/champion/square/riven.png"
+
+        } else if (randomchamp == 98) {
+            img_camp.src = "https://www.mobafire.com/images/champion/square/rumble.png"
+
+        } else if (randomchamp == 99) {
+            img_camp.src = "https://www.mobafire.com/images/champion/square/ryze.png"
+
+        } else if (randomchamp == 100) {
+            img_camp.src = "https://www.mobafire.com/images/champion/square/samira.png"
+
+        } else if (randomchamp == 101) {
+            img_camp.src = "https://www.mobafire.com/images/champion/square/sejuani.png"
+
+        } else if (randomchamp == 102) {
+            img_camp.src = "https://www.mobafire.com/images/champion/square/senna.png"
+
+        } else if (randomchamp == 103) {
+            img_camp.src = "https://www.mobafire.com/images/champion/square/seraphine.png"
+
+        } else if (randomchamp == 104) {
+            img_camp.src = "https://www.mobafire.com/images/champion/square/sett.png"
+
+        } else if (randomchamp == 105) {
+            img_camp.src = "https://www.mobafire.com/images/champion/square/shaco.png"
+
+        } else if (randomchamp == 106) {
+            img_camp.src = "https://www.mobafire.com/images/champion/square/shen.png"
+
+        } else if (randomchamp == 107) {
+            img_camp.src = "https://www.mobafire.com/images/champion/square/shyvana.png"
+
+        } else if (randomchamp == 108) {
+            img_camp.src = "https://www.mobafire.com/images/champion/square/singed.png"
+
+        } else if (randomchamp == 109) {
+            img_camp.src = "https://www.mobafire.com/images/champion/square/sion.png"
+
+        } else if (randomchamp == 110) {
+            img_camp.src = "https://www.mobafire.com/images/champion/square/sivir.png"
+
+        } else if (randomchamp == 111) {
+            img_camp.src = "https://www.mobafire.com/images/champion/square/skarner.png"
+
+        } else if (randomchamp == 112) {
+            img_camp.src = "https://www.mobafire.com/images/champion/square/sona.png"
+
+        } else if (randomchamp == 113) {
+            img_camp.src = "https://www.mobafire.com/images/champion/square/soraka.png"
+
+        } else if (randomchamp == 113) {
+            img_camp.src = "https://www.mobafire.com/images/champion/square/swain.png"
+
+        } else if (randomchamp == 114) {
+            img_camp.src = "https://www.mobafire.com/images/champion/square/syndra.png"
+
+        } else if (randomchamp == 115) {
+            img_camp.src = "https://www.mobafire.com/images/avatars/tahm-kench-classic.png"
+
+        } else if (randomchamp == 116) {
+            img_camp.src = "https://www.mobafire.com/images/legacy-avatars/taliyah.png"
+
+        } else if (randomchamp == 117) {
+            img_camp.src = "https://www.mobafire.com/images/legacy-avatars/talon-classic.png"
+
+        } else if (randomchamp == 118) {
+            img_camp.src = "https://www.mobafire.com/images/legacy-avatars/taric-classic.png"
+
+        } else if (randomchamp == 119) {
+            img_camp.src = "https://www.mobafire.com/images/legacy-avatars/teemo.png"
+
+        } else if (randomchamp == 120) {
+            img_camp.src = "https://www.mobafire.com/images/legacy-avatars/thresh-classic.png"
+
+        } else if (randomchamp == 121) {
+            img_camp.src = "https://www.mobafire.com/images/legacy-avatars/tristana-classic.png"
+
+        } else if (randomchamp == 122) {
+            img_camp.src = "https://www.mobafire.com/images/legacy-avatars/trundle-classic.png"
+
+        } else if (randomchamp == 123) {
+            img_camp.src = "https://www.mobafire.com/images/legacy-avatars/tryndamere.png"
+
+        } else if (randomchamp == 124) {
+            img_camp.src = "https://www.mobafire.com/images/avatars/twisted-fate-classic.png"
+
+        } else if (randomchamp == 125) {
+            img_camp.src = "https://www.mobafire.com/images/avatars/twitch-classic.png"
+
+        } else if (randomchamp == 126) {
+            img_camp.src = "https://www.mobafire.com/images/legacy-avatars/udyr-classic.png"
+
+        } else if (randomchamp == 127) {
+            img_camp.src = "https://esportspedia-lol.s3.amazonaws.com/8/88/UrgotSquare.png"
+
+        } else if (randomchamp == 128) {
+            img_camp.src = "https://www.mobafire.com/images/avatars/varus-classic.png"
+
+        } else if (randomchamp == 129) {
+            img_camp.src = "https://www.mobafire.com/images/avatars/vayne-classic.png"
+
+        } else if (randomchamp == 130) {
+            img_camp.src = "https://www.mobafire.com/images/avatars/veigar-classic.png"
+
+        } else if (randomchamp == 131) {
+            img_camp.src = "https://i.redd.it/2t0vshxcxnj41.jpg"
+
+        } else if (randomchamp == 132) {
+            img_camp.src = "https://www.mobafire.com/images/avatars/vi-classic.png"
+
+        } else if (randomchamp == 133) {
+            img_camp.src = "https://www.mobafire.com/images/avatars/viego-classic.png"
+
+        } else if (randomchamp == 134) {
+            img_camp.src = "https://www.mobafire.com/images/avatars/viktor-classic.png"
+
+        } else if (randomchamp == 135) {
+            img_camp.src = "https://www.mobafire.com/images/avatars/vladimir-classic.png"
+
+        } else if (randomchamp == 136) {
+            img_camp.src = "https://www.mobafire.com/images/avatars/volibear-classic.png"
+
+        } else if (randomchamp == 137) {
+            img_camp.src = "https://www.mobafire.com/images/avatars/warwick-classic.png"
+
+        } else if (randomchamp == 138) {
+            img_camp.src = "https://www.mobafire.com/images/avatars/wukong-classic.png"
+
+        } else if (randomchamp == 139) {
+            img_camp.src = "https://www.mobafire.com/images/avatars/xayah-classic.png"
+
+        } else if (randomchamp == 140) {
+            img_camp.src = "https://www.mobafire.com/images/avatars/xerath-classic.png"
+
+        } else if (randomchamp == 141) {
+            img_camp.src = "https://www.mobafire.com/images/champion/square/xin-zhao.png"
+
+        } else if (randomchamp == 142) {
+            img_camp.src = "https://www.mobafire.com/images/champion/square/yasuo.png"
+
+        } else if (randomchamp == 143) {
+            img_camp.src = "https://www.mobafire.com/images/champion/square/yone.png"
+
+        } else if (randomchamp == 144) {
+            img_camp.src = "https://www.mobafire.com/images/champion/square/yorick.png"
+
+        } else if (randomchamp == 145) {
+            img_camp.src = "https://www.mobafire.com/images/avatars/yuumi-classic.png"
+
+        } else if (randomchamp == 146) {
+            img_camp.src = "https://www.mobafire.com/images/avatars/zac-classic.png"
+
+        } else if (randomchamp == 147) {
+            img_camp.src = "https://www.mobafire.com/images/avatars/zed-classic.png"
+
+        } else if (randomchamp == 148) {
+            img_camp.src = "https://www.mobafire.com/images/avatars/ziggs-classic.png"
+
+        } else if (randomchamp == 149) {
+            img_camp.src = "https://www.mobafire.com/images/avatars/zilean-classic.png"
+
+        } else if (randomchamp == 150) {
+            img_camp.src = "https://www.mobafire.com/images/avatars/zoe-classic.png"
+
+        } else if (randomchamp == 151) {
+            img_camp.src = "https://www.mobafire.com/images/avatars/zyra-classic.png"
+
         }
-        
+
+
     }
 
     function random_build() {
         var randombuild = parseInt(Math.random() * 15);
 
         if (randombuild == 0) {
-            img_build.src ="https://preview.redd.it/5bmb0lsh0zb21.png?width=256&format=png&auto=webp&s=08815c67c0cb72bfa773b746b95e2d13dfefb39f"
+            img_build.src = "https://preview.redd.it/5bmb0lsh0zb21.png?width=256&format=png&auto=webp&s=08815c67c0cb72bfa773b746b95e2d13dfefb39f"
 
         } else if (randombuild == 1) {
-            img_build.src ="https://lolstatic-a.akamaihd.net/frontpage/apps/prod/preseason-2018/pt_BR/a6708b7ae3dbc0b25463f9c8e259a513d2c4c7e6/assets/img/runeBuilder/runes/108x108/8008.png"
+            img_build.src = "https://lolstatic-a.akamaihd.net/frontpage/apps/prod/preseason-2018/pt_BR/a6708b7ae3dbc0b25463f9c8e259a513d2c4c7e6/assets/img/runeBuilder/runes/108x108/8008.png"
 
         } else if (randombuild == 2) {
-            img_build.src ="https://lolstatic-a.akamaihd.net/frontpage/apps/prod/preseason-2018/pt_BR/a6708b7ae3dbc0b25463f9c8e259a513d2c4c7e6/assets/img/runeBuilder/runes/108x108/8005.png"
-        
+            img_build.src = "https://lolstatic-a.akamaihd.net/frontpage/apps/prod/preseason-2018/pt_BR/a6708b7ae3dbc0b25463f9c8e259a513d2c4c7e6/assets/img/runeBuilder/runes/108x108/8005.png"
+
         } else if (randombuild == 3) {
-            img_build.src ="https://images.contentstack.io/v3/assets/blt731acb42bb3d1659/blt7701042d8466e4d1/5ed8811098e62f38ec84c8bd/Predator_rune.png"
+            img_build.src = "https://images.contentstack.io/v3/assets/blt731acb42bb3d1659/blt7701042d8466e4d1/5ed8811098e62f38ec84c8bd/Predator_rune.png"
 
         } else if (randombuild == 4) {
-            img_build.src ="https://vignette.wikia.nocookie.net/leagueoflegends/images/0/0a/Electrocute_rune.png/revision/latest?cb=20171126182032"
+            img_build.src = "https://vignette.wikia.nocookie.net/leagueoflegends/images/0/0a/Electrocute_rune.png/revision/latest?cb=20171126182032"
 
         } else if (randombuild == 5) {
-            img_build.src ="https://vignette.wikia.nocookie.net/leagueoflegends/images/9/9e/Dark_Harvest_rune.png/revision/latest?cb=20171126182324"
+            img_build.src = "https://vignette.wikia.nocookie.net/leagueoflegends/images/9/9e/Dark_Harvest_rune.png/revision/latest?cb=20171126182324"
 
         } else if (randombuild == 6) {
-            img_build.src ="https://raw.communitydragon.org/10.24/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/styles/domination/hailofblades/hailofblades.png"
+            img_build.src = "https://raw.communitydragon.org/10.24/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/styles/domination/hailofblades/hailofblades.png"
 
         } else if (randombuild == 7) {
-            img_build.src ="https://i.pinimg.com/originals/6d/0e/09/6d0e090e196987829fa40326b50b72e0.png"
+            img_build.src = "https://i.pinimg.com/originals/6d/0e/09/6d0e090e196987829fa40326b50b72e0.png"
 
         } else if (randombuild == 8) {
-            img_build.src ="https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Sorcery/PhaseRush/PhaseRush.png"
+            img_build.src = "https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Sorcery/PhaseRush/PhaseRush.png"
 
         } else if (randombuild == 9) {
-            img_build.src ="https://forums.comunidades.riotgames.com/t5/image/serverpage/image-id/7656i9E2BACB349C8ABA4?v=v2"
+            img_build.src = "https://forums.comunidades.riotgames.com/t5/image/serverpage/image-id/7656i9E2BACB349C8ABA4?v=v2"
 
         } else if (randombuild == 10) {
-            img_build.src ="https://aj-r.github.io/api-challenge-2017/img/runesReforged/perk/8437.png"
+            img_build.src = "https://aj-r.github.io/api-challenge-2017/img/runesReforged/perk/8437.png"
 
         } else if (randombuild == 11) {
-            img_build.src ="https://images.contentstack.io/v3/assets/blt731acb42bb3d1659/blt7e69430e4a41f3c4/5eeade67293eef25d2b6e38c/Guardian_rune.png"
+            img_build.src = "https://images.contentstack.io/v3/assets/blt731acb42bb3d1659/blt7e69430e4a41f3c4/5eeade67293eef25d2b6e38c/Guardian_rune.png"
 
         } else if (randombuild == 12) {
-            img_build.src ="https://opgg-static.akamaized.net/images/lol/perk/8439.png?image=q_auto:best&v=1607480996"
-            
+            img_build.src = "https://opgg-static.akamaized.net/images/lol/perk/8439.png?image=q_auto:best&v=1607480996"
+
         } else if (randombuild == 13) {
-            img_build.src ="https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Inspiration/GlacialAugment/GlacialAugment.png"
-            
+            img_build.src = "https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Inspiration/GlacialAugment/GlacialAugment.png"
+
         } else if (randombuild == 14) {
-            img_build.src ="https://vignette.wikia.nocookie.net/leagueoflegends/images/a/a9/Unsealed_Spellbook_rune.png/revision/latest?cb=20180406025315"
-            
-        } 
+            img_build.src = "https://vignette.wikia.nocookie.net/leagueoflegends/images/a/a9/Unsealed_Spellbook_rune.png/revision/latest?cb=20180406025315"
+
+        }
     }
 
     function random_map() {
@@ -852,4 +1162,5 @@ Chart.defaults.global.defaultFontColor = "white";
 
         }
     }
+
 </script>
